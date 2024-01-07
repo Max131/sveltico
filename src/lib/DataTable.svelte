@@ -2,6 +2,8 @@
   export let data = [];
   export let itemsPerPage = 10;
 
+  itemsPerPage ||= data.length;
+
   let currentPage = 0;
   let paginatedData = data;
 
@@ -27,17 +29,19 @@
   </tbody>
 </table>
 
-<figure>
-  <div role="group">
-    {#each Array(PAGES) as _, index}
-      <button
-        class={currentPage !== index ? "" : "outline secondary"}
-        data-page={index}
-        on:click={handlePagination}>{index + 1}</button
-      >
-    {/each}
-  </div>
-</figure>
+{#if itemsPerPage !== data.length}
+  <figure>
+    <div role="group">
+      {#each Array(PAGES) as _, index}
+        <button
+          class={currentPage !== index ? "" : "outline secondary"}
+          data-page={index}
+          on:click={handlePagination}>{index + 1}</button
+        >
+      {/each}
+    </div>
+  </figure>
+{/if}
 
 <style>
   table {
