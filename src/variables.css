@@ -1,0 +1,7 @@
+:root {
+  --pico-border-radius: 2em;
+}
+
+h1 {
+  --pico-font-family: poppins, sans-serif;
+}
