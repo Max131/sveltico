@@ -10,7 +10,7 @@
 
 <main class="container">
   <h1>Sit voluptatibus adipisci</h1>
-  <DataTable data={users} itemsPerPage={5} let:item>
+  <DataTable data={users} itemsPerPage={5} isTable let:item>
     <thead slot="head">
       <tr>
         <th>ID</th>

@@ -2,6 +2,7 @@
   import SearchBar from "./SearchBar.svelte";
   export let data = [];
   export let itemsPerPage = 10;
+  export let isTable;
 
   itemsPerPage ||= data.length;
 
@@ -22,16 +23,25 @@
 </script>
 
 <SearchBar {data} fields={["first_name", "email"]} bind:results />
-<table class="striped">
+{#if isTable}
+  <table class="striped">
+    <slot name="head" />
+    <tbody>
+      {#if paginatedData}
+        {#each paginatedData as item}
+          <slot {item} />
+        {/each}
+      {/if}
+    </tbody>
+  </table>
+{:else}
   <slot name="head" />
-  <tbody>
-    {#if paginatedData}
-      {#each paginatedData as item}
-        <slot {item} />
-      {/each}
-    {/if}
-  </tbody>
-</table>
+  {#if paginatedData}
+    {#each paginatedData as item}
+      <slot {item} />
+    {/each}
+  {/if}
+{/if}
 
 {#if itemsPerPage !== data.length}
   <figure>
