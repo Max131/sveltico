@@ -10,26 +10,6 @@
 
 <main class="container">
   <h1>Sit voluptatibus adipisci</h1>
-  <!-- <button type="button" on:click={() => (tran = !tran)}>Animate</button> -->
-  <button type="button" on:click={() => (open = !open)}>OpenModal</button>
-  <Modal bind:open>
-    <p slot="header">Lorem, ipsum dolor.</p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis libero
-      aliquam consectetur, veniam repellat id et consequuntur, incidunt eum
-      officia necessitatibus, sed sunt deleniti accusantium alias quasi
-      delectus. Vitae, nulla!
-    </p>
-    <div slot="footer">
-      <a
-        href="#!"
-        role="button"
-        class="secondary"
-        on:click={() => (open = false)}>Delete</a
-      >
-      <a href="#!" role="button">Save</a>
-    </div>
-  </Modal>
   <DataTable data={users} itemsPerPage={5} let:item>
     <thead slot="head">
       <tr>
@@ -52,6 +32,26 @@
       </td>
     </tr>
   </DataTable>
+  <!-- <button type="button" on:click={() => (tran = !tran)}>Animate</button> -->
+  <button type="button" on:click={() => (open = !open)}>OpenModal</button>
+  <Modal bind:open>
+    <p slot="header">Lorem, ipsum dolor.</p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis libero
+      aliquam consectetur, veniam repellat id et consequuntur, incidunt eum
+      officia necessitatibus, sed sunt deleniti accusantium alias quasi
+      delectus. Vitae, nulla!
+    </p>
+    <div slot="footer">
+      <a
+        href="#!"
+        role="button"
+        class="secondary"
+        on:click={() => (open = false)}>Delete</a
+      >
+      <a href="#!" role="button">Save</a>
+    </div>
+  </Modal>
 </main>
 
 <style>
