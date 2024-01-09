@@ -4,12 +4,11 @@
   export let itemsPerPage = 10;
   export let isTable;
 
-  itemsPerPage ||= data.length;
-
-  let results;
+  let results = data;
   let currentPage = 0;
 
-  const handlePagination = ({ currentTarget }) => {
+  itemsPerPage ||= results.length;
+  const handleClickPagination = ({ currentTarget }) => {
     const { page } = currentTarget.dataset;
     currentPage = +page;
   };
@@ -27,23 +26,19 @@
   <table class="striped">
     <slot name="head" />
     <tbody>
-      {#if paginatedData}
-        {#each paginatedData as item}
-          <slot {item} />
-        {/each}
-      {/if}
+      {#each paginatedData ?? [] as item}
+        <slot {item} />
+      {/each}
     </tbody>
   </table>
 {:else}
   <slot name="head" />
-  {#if paginatedData}
-    {#each paginatedData as item}
-      <slot {item} />
-    {/each}
-  {/if}
+  {#each paginatedData ?? [] as item}
+    <slot {item} />
+  {/each}
 {/if}
 
-{#if itemsPerPage !== data.length}
+{#if itemsPerPage !== results?.length}
   <figure>
     <div role="group">
       {#if PAGES}
@@ -51,7 +46,7 @@
           <button
             class={currentPage !== index ? "" : "outline secondary"}
             data-page={index}
-            on:click={handlePagination}>{index + 1}</button
+            on:click={handleClickPagination}>{index + 1}</button
           >
         {/each}
       {/if}
